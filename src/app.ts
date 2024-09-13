@@ -55,6 +55,19 @@ const handleQueue = async (userId) => {
 };
 
 /**
+ * Flujo de nota de voz
+ * Solo escuchar
+ */
+const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
+.addAnswer('En este momento no puedo escuchar audios, solo leer textos'
+    //, async (ctx, { provider }) => {
+  //const localPath = await provider.saveFile(ctx, {path:'./'})
+  //console.log(localPath)
+//}
+)
+
+
+/**
  * Flujo de bienvenida que maneja las respuestas del asistente de IA
  * @type {import('@builderbot/bot').Flow<BaileysProvider, MemoryDB>}
  */
