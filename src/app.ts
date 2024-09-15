@@ -61,7 +61,7 @@ const handleQueue = async (userId) => {
  * Flujo de nota de voz
  * Respuesta texto y audio
  */
-const voiceNoteFlow = addKeyword<Provider, Database>(EVENTS.VOICE_NOTE)
+const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
     .addAction(async (ctx, { flowDynamic, state, provider }) => {
         await recording(ctx, provider)
         try {
