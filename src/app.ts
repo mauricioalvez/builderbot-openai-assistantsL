@@ -73,9 +73,10 @@ const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
         try {
             // Guardar archivo de audio localmente
             const to = ctx.from
-            await flowDynamic('\u{1F4A1} Save File:')
-            await provider.saveFile(ctx, { path: './audios/'})
+            await flowDynamic('\u{1F4A1} Audio:')
+            await provider.saveFile(ctx, { path: './'})
             await flowDynamic(to)
+            //await flowDynamic(localPath)
             //console.log('Ruta del archivo de audio local:', localPath)
 
             // Leer el archivo de audio
@@ -108,7 +109,7 @@ const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
 
         } catch (error) {
             console.error('Error al procesar la nota de voz:', error);
-            await flowDynamic('Hubo un error al procesar la nota de voz. Por favor, intenta nuevamente.');
+            await flowDynamic('Hubo un error al procesar la nota de voz. Por favor, intenta enviar un mensaje de texto.');
         }
     });
 // TEXTO A VOZ
