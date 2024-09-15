@@ -63,7 +63,7 @@ const voiceNoteFlow = addKeyword<Provider, Database>(EVENTS.VOICE_NOTE)
     .addAction(
         async (ctx, { flowDynamic, provider }) => {
             const to = ctx.from
-            await flowDynamic('\u{1F4A1} Save File:')
+            await flowDynamic('En este momento no puedo escuchar audios, solo leer textos:')
             const localPath = await provider.saveFile(ctx, { path: './audios/' })
             await flowDynamic(localPath)
             
