@@ -58,8 +58,7 @@ const handleQueue = async (userId) => {
  * Flujo de nota de voz
  * Mostrar path
  */
-const voiceNoteFlow = addKeyword<Provider, Database>(EVENTS.VOICE_NOTE)
-
+const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
     .addAction(
         async (ctx, { flowDynamic, provider }) => {
             const to = ctx.from
