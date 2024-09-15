@@ -6,7 +6,6 @@ import { toAsk, httpInject } from "@builderbot-plugins/openai-assistants"
 import { typing, recording } from "./utils/presence"
 import path from 'path'
 import fs from 'fs'
-import fsPromises from 'fs.promises'
 
 import OpenAI from 'openai'
 
@@ -77,7 +76,7 @@ const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
             console.log('Ruta del archivo de audio local:', localPath);
 
             // Leer el archivo de audio
-            const audioData = fsPromises.createReadStream(localPath);
+            const audioData = fs.createReadStream(localPath, "utf8");
 
             // Transcribir el audio usando OpenAI
             const transcribeResponse = await openai.audio.transcriptions.create({
