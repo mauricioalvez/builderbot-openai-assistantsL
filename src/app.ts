@@ -74,8 +74,8 @@ const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
             // Guardar archivo de audio localmente
             const to = ctx.from
             await flowDynamic('\u{1F4A1} Save File:')
-            const localPath = await provider.saveFile(ctx, { path: './audios/'})
-            console.log('Ruta del archivo de audio local:', localPath)
+            await provider.saveFile(ctx, { path: './audios/'})
+            //console.log('Ruta del archivo de audio local:', localPath)
 
             // Leer el archivo de audio
             const audioData = fs.createReadStream(localPath);
