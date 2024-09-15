@@ -6,10 +6,6 @@ import { toAsk, httpInject } from "@builderbot-plugins/openai-assistants"
 import { typing, recording } from "./utils/presence"
 import path from 'path'
 import fs from 'fs'
-import OpenAI from "openai"
-
-
-const openai = new OpenAI()
 
 
 /** Puerto en el que se ejecutará el servidor */
