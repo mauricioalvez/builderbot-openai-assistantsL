@@ -59,7 +59,7 @@ const handleQueue = async (userId) => {
  * Mostrar path
  */
 const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
-    .addAnswer(
+    .addAction(
         async (ctx, { flowDynamic, provider }) => {
             const to = ctx.from
             await flowDynamic('En este momento no puedo escuchar audios, solo leer textos. ')
