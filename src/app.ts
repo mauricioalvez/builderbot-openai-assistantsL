@@ -3,7 +3,14 @@ import { createBot, createProvider, createFlow, addKeyword, EVENTS } from '@buil
 import { MemoryDB } from '@builderbot/bot'
 import { BaileysProvider } from '@builderbot/provider-baileys'
 import { toAsk, httpInject } from "@builderbot-plugins/openai-assistants"
-import { typing } from "./utils/presence"
+import { typing, recording } from "./utils/presence"
+import path from 'path'
+import fs from 'fs'
+import OpenAI from "openai"
+
+
+const openai = new OpenAI()
+
 
 /** Puerto en el que se ejecutará el servidor */
 const PORT = process.env.PORT ?? 3008
@@ -56,19 +63,67 @@ const handleQueue = async (userId) => {
 
 /**
  * Flujo de nota de voz
- * Mostrar path
+ * Respuesta texto y audio
  */
-const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
-    .addAction(
-        async (ctx, { flowDynamic, provider }) => {
-            const to = ctx.from
-            await flowDynamic('En este momento no puedo escuchar audios, solo leer textos. ')
-            const localPath = await provider.saveFile(ctx, { path: './audios/' })
-            await flowDynamic(localPath)
+const voiceNoteFlow = addKeyword<Provider, Database>(EVENTS.VOICE_NOTE)
+    .addAction(async (ctx, { flowDynamic, state, provider }) => {
+        await recording(ctx, provider)
+        try {
+            // Guardar archivo de audio localmente
+            const localPath = await provider.saveFile(ctx, { path: './audios' });
+            //console.log('Ruta del archivo de audio local:', localPath);
+
+            // Leer el archivo de audio
+            const audioData = fs.createReadStream(localPath);
+
+            // Transcribir el audio usando OpenAI
+            const transcribeResponse = await openai.audio.transcriptions.create({
+                file: audioData,
+                model: 'whisper-1',
+            });
+            const transcription = transcribeResponse.text;
+            console.log('Transcripción del audio:', transcription);
+
+            // Obtener respuesta del asistente de OpenAI basado en la transcripción
             
-            
+            const askToAiResponse = await toAsk(ASSISTANT_ID, transcription, state);
+            console.log('Respuesta del asistente de OpenAI:', askToAiResponse);
+            //await flowDynamic('Transcripción del audio: ' + transcription);
+            await flowDynamic(askToAiResponse);
+
+
+            // Convertir la respuesta en un archivo de audio
+            const audioUrl = await noteToVoiceFlow(askToAiResponse);
+            //console.log('Archivo de audio generado:', audioUrl);
+
+            // Devolver el audio como respuesta
+            await flowDynamic([{ media: audioUrl }]);
+            fs.unlinkSync(localPath);
+            fs.unlinkSync(audioUrl);
+
+        } catch (error) {
+            console.error('Error al procesar la nota de voz:', error);
+            await flowDynamic('Hubo un error al procesar la nota de voz. Por favor, intenta nuevamente.');
         }
-    )
+    });
+// TEXTO A VOZ
+const noteToVoiceFlow = async (text: string) => {
+    const speechFilePath = path.resolve('./audios/speech_${Date.now()}.mp3');
+    try {
+        const mp3 = await openai.audio.speech.create({
+            model: "tts-1",
+            voice: "alloy",
+            input: text,
+        });
+
+        const buffer = Buffer.from(await mp3.arrayBuffer());
+        await fs.promises.writeFile(speechFilePath, buffer);
+        return speechFilePath;
+    } catch (error) {
+        console.error('Error al generar el audio:', error);
+        throw new Error('Error al generar el audio');
+    }
+};
 
 
 /**
