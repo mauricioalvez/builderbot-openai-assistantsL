@@ -72,7 +72,7 @@ const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
         await recording(ctx, provider)
         try {
             // Guardar archivo de audio localmente
-            const localPath = await provider.saveFile(ctx);
+            const localPath = await provider.saveFile(ctx { path: 'audios'});
             console.log('Ruta del archivo de audio local:', localPath);
 
             // Leer el archivo de audio
