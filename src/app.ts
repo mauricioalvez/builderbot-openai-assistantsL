@@ -59,10 +59,10 @@ const handleQueue = async (userId) => {
  * Mostrar path
  */
 const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
-    .addAction(
+    .addAnswer(
         async (ctx, { flowDynamic, provider }) => {
             const to = ctx.from
-            await flowDynamic('En este momento no puedo escuchar audios, solo leer textos:')
+            await flowDynamic('En este momento no puedo escuchar audios, solo leer textos. ')
             const localPath = await provider.saveFile(ctx, { path: './audios/' })
             await flowDynamic(localPath)
             
