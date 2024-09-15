@@ -73,9 +73,9 @@ const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
         try {
             // Guardar archivo de audio localmente
             const to = ctx.from
-            await flowDynamic('\u{1F4A1} Audio:')
+            await flowDynamic('\u{1F4A1} Audio')
             const localPath = await provider.saveFile(ctx, { path: './assets/'})
-            await flowDynamic(localPath)
+            //await flowDynamic(localPath)
             //console.log('Ruta del archivo de audio local:', localPath)
 
             // Leer el archivo de audio
@@ -103,7 +103,7 @@ const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
 
             // Devolver el audio como respuesta
             await flowDynamic([{ media: audioUrl }]);
-            fs.unlinkSync(to);
+            fs.unlinkSync(localPath);
             fs.unlinkSync(audioUrl);
 
         } catch (error) {
@@ -113,7 +113,7 @@ const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
     });
 // TEXTO A VOZ
 const noteToVoiceFlow = async (text: string) => {
-    const speechFilePath = path.resolve('./audios/speech_${Date.now()}.mp3');
+    const speechFilePath = path.resolve('./assets/speech_${Date.now()}.mp3');
     try {
         const mp3 = await openai.audio.speech.create({
             model: "tts-1",
