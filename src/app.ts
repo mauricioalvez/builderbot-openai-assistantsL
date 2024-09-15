@@ -75,7 +75,7 @@ const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
             console.log('Ruta del archivo de audio local:', localPath);
 
             // Leer el archivo de audio
-            const audioData = fs.createReadStream(localPath);
+            const audioData = fs.promises.createReadStream(localPath);
 
             // Transcribir el audio usando OpenAI
             const transcribeResponse = await openai.audio.transcriptions.create({
