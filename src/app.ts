@@ -8,6 +8,9 @@ import path from 'path'
 import fs from 'fs'
 import OpenAI from 'openai'
 
+
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY ?? ''
+
 const openai = new OpenAI()
 
 /** Puerto en el que se ejecutará el servidor */
