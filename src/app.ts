@@ -6,7 +6,7 @@ import { toAsk, httpInject } from "@builderbot-plugins/openai-assistants"
 import { typing, recording } from "./utils/presence"
 import path from 'path'
 import fs from 'fs'
-import fsPromises from 'fs/promises'
+import fsPromises from 'fs.promises'
 
 import OpenAI from 'openai'
 
