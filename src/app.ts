@@ -56,15 +56,20 @@ const handleQueue = async (userId) => {
 
 /**
  * Flujo de nota de voz
- * Solo escuchar
+ * Mostrar path
  */
-const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
-.addAnswer('En este momento no puedo escuchar audios, solo leer textos'
-    //, async (ctx, { provider }) => {
-  //const localPath = await provider.saveFile(ctx, {path:'./'})
-  //console.log(localPath)
-//}
-)
+const voiceNoteFlow = addKeyword<Provider, Database>(EVENTS.VOICE_NOTE)
+
+    .addAction(
+        async (ctx, { flowDynamic, provider }) => {
+            const to = ctx.from
+            await flowDynamic('\u{1F4A1} Save File:')
+            const localPath = await provider.saveFile(ctx, { path: './audios/' })
+            await flowDynamic(localPath)
+            
+            
+        }
+    )
 
 
 /**
