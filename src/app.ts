@@ -147,6 +147,14 @@ const noteToVoiceFlow = async (text: string) => {
 };
 
 
+
+/** Flujo de denuncia o reclamo
+ * se activa ante estas palabras
+ */
+const denunciaFlow = addKeyword<Provider, Database>('denuncia', 'reclamo', 'denunciar', 'reportar').addAnswer(
+    ['Para reclamos o denuncias sobre servicios turísticos en Misiones ingrese a', '📄 https://misiones.tur.ar/web/pub_fisca/DenunciaAV.php \n', 'Dirección de Fiscalización del Ministerio de Turismo de Misiones: fiscalizacion@misiones.tur.ar']
+)
+
 /**
  * Flujo de bienvenida que maneja las respuestas del asistente de IA
  * @type {import('@builderbot/bot').Flow<BaileysProvider, MemoryDB>}
