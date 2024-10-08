@@ -103,13 +103,13 @@ const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
                 model: 'whisper-1',
             });
             const transcription = transcribeResponse.text;
-            // console.log('Transcripción del audio:', transcription);
+            console.log('Transcripción del audio:', transcription);
 
             // Obtener respuesta del asistente de OpenAI basado en la transcripción
             
             const askToAiResponse = await toAsk(ASSISTANT_ID, transcription, state);
             console.log('Respuesta del asistente de OpenAI:', askToAiResponse);
-            // await flowDynamic('Transcripción del audio: ' + transcription);
+            await flowDynamic('Transcripción del audio: ' + transcription);
             await flowDynamic(askToAiResponse);
 
 
