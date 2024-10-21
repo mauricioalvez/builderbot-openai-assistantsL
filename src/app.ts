@@ -33,7 +33,7 @@ const processUserMessage = async (ctx, { flowDynamic, state, provider }) => {
     const chunks = response.split(/\n\n+/);
     for (const chunk of chunks) {
       
-        const cleanedChunk = chunk.trim().replace(/【.*?】[ ] /g, "");
+        const cleanedChunk = chunk.trim().replace(/【.*?】 /g, "");
         await flowDynamic([{ body: cleanedChunk }]);
     }
     //await flowDynamic([{ body: response }])
