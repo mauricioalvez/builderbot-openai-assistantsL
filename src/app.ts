@@ -30,13 +30,13 @@ const processUserMessage = async (ctx, { flowDynamic, state, provider }) => {
     const response = await toAsk(ASSISTANT_ID, ctx.body, state);
 
     // Split the response into chunks and send them sequentially
-    //const chunks = response.split(/\n\n+/);
-    //for (const chunk of chunks) {
+    const chunks = response.split(/\n\n+/);
+    for (const chunk of chunks) {
       
-        //const cleanedChunk = chunk.trim().replace(/【.*?】[ ] /g, "");
-        //await flowDynamic([{ body: cleanedChunk }]);
-    //}
-    await flowDynamic([{ body: response }])
+        const cleanedChunk = chunk.trim().replace(/【.*?】[ ] /g, "");
+        await flowDynamic([{ body: cleanedChunk }]);
+    }
+    //await flowDynamic([{ body: response }])
 };
 
 /**
