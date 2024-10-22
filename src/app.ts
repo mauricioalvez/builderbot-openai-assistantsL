@@ -3,7 +3,7 @@ import { createBot, createProvider, createFlow, addKeyword, MemoryDB, EVENTS } f
 /** import { MemoryDB } from '@builderbot/bot' */
 
 import { BaileysProvider } from '@builderbot/provider-baileys'
-import { IDatabase, adapterDB } from './mongo-database';
+import { IDatabase, adapterDB } from './mongo-database'
 import { toAsk, httpInject } from "@builderbot-plugins/openai-assistants"
 import { typing, recording } from "./utils/presence"
 import path from 'path'
@@ -213,7 +213,7 @@ const main = async () => {
     const { httpServer } = await createBot({
         flow: adapterFlow,
         provider: adapterProvider,
-        database: adapterDB,
+        database: adapterDB
     });
 
     httpInject(adapterProvider.server);
