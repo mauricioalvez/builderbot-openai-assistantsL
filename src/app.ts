@@ -1,8 +1,9 @@
 import "dotenv/config"
 import { createBot, createProvider, createFlow, addKeyword, MemoryDB, EVENTS } from '@builderbot/bot'
 /** import { MemoryDB } from '@builderbot/bot' */
-import { IDatabase, adapterDB } from './mongo-database';
+
 import { BaileysProvider } from '@builderbot/provider-baileys'
+import { IDatabase, adapterDB } from './mongo-database';
 import { toAsk, httpInject } from "@builderbot-plugins/openai-assistants"
 import { typing, recording } from "./utils/presence"
 import path from 'path'
