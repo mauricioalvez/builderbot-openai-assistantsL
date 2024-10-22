@@ -1,5 +1,5 @@
 import "dotenv/config"
-import { createBot, createProvider, createFlow, addKeyword, EVENTS } from '@builderbot/bot'
+import { createBot, createProvider, createFlow, addKeyword, MemoryDB, EVENTS } from '@builderbot/bot'
 /** import { MemoryDB } from '@builderbot/bot' */
 import { IDatabase, adapterDB } from './mongo-database';
 import { BaileysProvider } from '@builderbot/provider-baileys'
