@@ -3,7 +3,7 @@ import { createBot, createProvider, createFlow, addKeyword, MemoryDB, EVENTS } f
 /** import { MemoryDB } from '@builderbot/bot' */
 
 import { BaileysProvider } from '@builderbot/provider-baileys'
-import { IDatabase, adapterDB } from './mongo-database'
+/** import { IDatabase, adapterDB } from './mongo-database' */
 import { toAsk, httpInject } from "@builderbot-plugins/openai-assistants"
 import { typing, recording } from "./utils/presence"
 import path from 'path'
@@ -85,7 +85,7 @@ const documentFlow = addKeyword(EVENTS.DOCUMENT).addAnswer('No puedo interpretar
  * Flujo de nota de voz
  * Respuesta texto y audio
  */
-const voiceNoteFlow = addKeyword<BaileysProvider, IDatabase>(EVENTS.VOICE_NOTE)
+const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
     .addAction(async (ctx, { flowDynamic, state, provider }) => {
         await recording(ctx, provider)
         try {
@@ -153,7 +153,7 @@ const noteToVoiceFlow = async (text: string) => {
 /** Flujo de denuncia o reclamo
  * se activa ante estas palabras
  */
-const denunciaFlow = addKeyword<BaileysProvider, IDatabase>(['denuncia', 'reclamo', 'denunciar', 'reportar']).addAnswer(
+const denunciaFlow = addKeyword<BaileysProvider, MemoryDB>(['denuncia', 'reclamo', 'denunciar', 'reportar']).addAnswer(
     ['Para reclamos o denuncias sobre servicios turísticos en Misiones ingrese a', '📄 https://misiones.tur.ar/web/pub_fisca/DenunciaAV.php \n', 'Dirección de Fiscalización del Ministerio de Turismo de Misiones: fiscalizacion@misiones.tur.ar']
 )
 
@@ -161,7 +161,7 @@ const denunciaFlow = addKeyword<BaileysProvider, IDatabase>(['denuncia', 'reclam
  * Flujo de bienvenida que maneja las respuestas del asistente de IA
  * @type {import('@builderbot/bot').Flow<BaileysProvider, MemoryDB>}
  */
-const welcomeFlow = addKeyword<BaileysProvider, IDatabase>(EVENTS.WELCOME)
+const welcomeFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.WELCOME)
     .addAction(async (ctx, { flowDynamic, state, provider }) => {
         const userId = ctx.from; // Use the user's ID to create a unique queue for each user
 
@@ -202,9 +202,9 @@ const main = async () => {
     /**
      * Base de datos en memoria para el bot
      * @type {MemoryDB}
-     const adapterDB = new MemoryDB();
      */
-    
+         const adapterDB = new MemoryDB();
+
 
     /**
      * Configuración y creación del bot
