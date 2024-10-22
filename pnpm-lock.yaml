@@ -29,6 +29,9 @@ importers:
       '@builderbot/provider-venom':
         specifier: ^1.2.2
         version: 1.2.2(encoding@0.1.13)(typescript@5.4.5)
+      '@builderbot/database-mongo': 
+        specifier: 1.2.1
+        version: 1.2.2
       '@builderbot/provider-wppconnect':
         specifier: ^1.2.2
         version: 1.2.2(encoding@0.1.13)(puppeteer-core@21.11.0(encoding@0.1.13))(typescript@5.4.5)
