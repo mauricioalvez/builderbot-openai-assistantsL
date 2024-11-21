@@ -9,7 +9,7 @@
     "lint": "eslint . --no-ignore",
     "dev": "npm run lint && nodemon ./src/app.ts",
     "build": "npx rollup -c"
-    "server" : "npx json-server --watch db.json --port 3001"
+    "server" : "npx json-server --watch ./src/db.json --port 3001"
   },
   "keywords": [],
   "dependencies": {
