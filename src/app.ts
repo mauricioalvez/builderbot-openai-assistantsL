@@ -3,7 +3,7 @@ import { createBot, createProvider, createFlow, addKeyword, EVENTS } from '@buil
 /** import { MemoryDB } from '@builderbot/bot' */
 
 import { BaileysProvider } from '@builderbot/provider-baileys'
-import { IDatabase, adapterDB } from './json-database';
+import { IDatabase, adapterDB } from './json-database'
 import { toAsk, httpInject } from "@builderbot-plugins/openai-assistants"
 import { typing, recording } from "./utils/presence"
 import path from 'path'
