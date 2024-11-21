@@ -1,6 +1,6 @@
 import "dotenv/config"
 import { createBot, createProvider, createFlow, addKeyword, EVENTS } from '@builderbot/bot'
-/** import { MemoryDB } from '@builderbot/bot' */
+/** import { MemoryDB } from '@builderbot/bot'  */
 
 import { BaileysProvider } from '@builderbot/provider-baileys'
 import { IDatabase, adapterDB } from './json-database'
