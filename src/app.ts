@@ -164,7 +164,8 @@ const denunciaFlow = addKeyword<BaileysProvider, MemoryDB>(['denuncia', 'reclamo
 const welcomeFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.WELCOME)
     .addAction(async (ctx, { flowDynamic, state, provider }) => {
         const userId = ctx.from; // Use the user's ID to create a unique queue for each user
-
+        console.log(userId);
+        
         if (!userQueues.has(userId)) {
             userQueues.set(userId, []);
         }
