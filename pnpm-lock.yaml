@@ -17,7 +17,7 @@ importers:
       '@builderbot/bot':
         specifier: 1.2.2
         version: 1.2.2
-      '@builderbot/database-json": 
+      '@builderbot/database-json': 
         specifier: 1.1.7
         version: 1.1.7
       '@builderbot/provider-baileys':
