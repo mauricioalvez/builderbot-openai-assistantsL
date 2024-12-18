@@ -81,7 +81,9 @@ const mediaFlow = addKeyword(EVENTS.MEDIA).addAnswer('No puedo interpretar image
 const documentFlow = addKeyword(EVENTS.DOCUMENT).addAnswer('No puedo interpretar imagenes, videos, localizaciones ni documentos, intenta enviar un texto o un audio.')
 
 const flowLocation = addKeyword(EVENTS.LOCATION)
-    .addAnswer('No puedo interpretar imagenes, videos, localizaciones ni documentos, intenta enviar un texto o un audio.')
+    .addAnswer('No puedo interpretar imagenes, videos, localizaciones ni documentos, intenta enviar un texto o un audio', {
+            media: 'https://misiones.tur.ar/wp-content/uploads/2024/12/cuadro-de-distancias-Misiones.pdf',
+    })
 
 /**
  * Flujo de nota de voz
