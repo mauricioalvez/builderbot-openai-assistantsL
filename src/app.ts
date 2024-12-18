@@ -193,7 +193,7 @@ const main = async () => {
      * Flujo del bot
      * @type {import('@builderbot/bot').Flow<BaileysProvider, MemoryDB>}
      */
-    const adapterFlow = createFlow([welcomeFlow, voiceNoteFlow, mediaFlow, documentFlow, denunciaFlow]);
+    const adapterFlow = createFlow([welcomeFlow, voiceNoteFlow, mediaFlow, documentFlow, denunciaFlow, flowLocation]);
 
     /**
      * Proveedor de servicios de mensajería
