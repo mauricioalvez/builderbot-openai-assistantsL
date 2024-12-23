@@ -164,7 +164,7 @@ const denunciaFlow = addKeyword<BaileysProvider, IDatabase>(['denuncia', 'reclam
 /** Flujo de distancia, mapa y folletos
  * se activa ante estas palabras
  */
-const denunciaFlow = addKeyword<BaileysProvider, IDatabase>(['distancia', 'distamcias', 'mapa', 'mapas', folleto, folletos]).addAnswer(
+const denunciaFlow = addKeyword<BaileysProvider, IDatabase>(['distancia', 'distamcias', 'mapa', 'mapas', 'folleto', 'folletos']).addAnswer(
     ['Para ver y descargar folletos, mapas y cuadro de distancias de Misiones ingrese a', '📄 https://misiones.tur.ar/folletos \n']
 )
 
