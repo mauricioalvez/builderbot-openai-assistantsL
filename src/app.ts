@@ -161,6 +161,14 @@ const denunciaFlow = addKeyword<BaileysProvider, IDatabase>(['denuncia', 'reclam
     ['Para reclamos o denuncias sobre servicios turísticos en Misiones ingrese a', '📄 https://misiones.tur.ar/web/pub_fisca/DenunciaAV.php \n', 'Dirección de Fiscalización del Ministerio de Turismo de Misiones: fiscalizacion@misiones.tur.ar']
 )
 
+/** Flujo de distancia, mapa y folletos
+ * se activa ante estas palabras
+ */
+const denunciaFlow = addKeyword<BaileysProvider, IDatabase>(['distancia', 'distamcias', 'mapa', 'mapas', folleto, folletos]).addAnswer(
+    ['Para ver y descargar folletos, mapas y cuadro de distancias de Misiones ingrese a', '📄 https://misiones.tur.ar/folletos \n']
+)
+
+
 /**
  * Flujo de bienvenida que maneja las respuestas del asistente de IA
  * @type {import('@builderbot/bot').Flow<BaileysProvider, MemoryDB>}
