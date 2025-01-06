@@ -226,7 +226,7 @@ const main = async () => {
     const { httpServer } = await createBot({
         flow: adapterFlow,
         provider: adapterProvider,
-        database: adapterDB
+        database: adapterDB,
     },{
     :blackList['5493764543198']
 });
