@@ -227,7 +227,9 @@ const main = async () => {
         flow: adapterFlow,
         provider: adapterProvider,
         database: adapterDB
-    });
+    },{
+    :blackList['5493764543198']
+});
 
     httpInject(adapterProvider.server);
     httpServer(+PORT);
