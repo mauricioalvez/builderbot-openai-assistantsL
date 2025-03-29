@@ -72,16 +72,16 @@ const handleQueue = async (userId) => {
  * Flujo de imágen y video
  */
 
-const mediaFlow = addKeyword(EVENTS.MEDIA).addAnswer('No puedo interpretar imagenes, videos, localizaciones ni documentos, intenta enviar un texto o un audio.')
+const mediaFlow = addKeyword(EVENTS.MEDIA).addAnswer('Gracias, se han recibido las imagenes, videos, localizaciones o documentos para su evaluación, continua con un texto o un audio.')
 
 /**
  * Flujo de documentos
  */
 
-const documentFlow = addKeyword(EVENTS.DOCUMENT).addAnswer('No puedo interpretar imagenes, videos, localizaciones ni documentos, intenta enviar un texto o un audio.')
+const documentFlow = addKeyword(EVENTS.DOCUMENT).addAnswer('Gracias, se han recibido las imagenes, videos, localizaciones o documentos para su evaluación, continua con un texto o un audio.')
 
 const flowLocation = addKeyword(EVENTS.LOCATION)
-    .addAnswer('No puedo interpretar imagenes, videos, localizaciones ni documentos, intenta enviar un texto o un audio', {
+    .addAnswer('Gracias, se ha recibido una localización para su evaluación, aprovechamos para compartirle un cuadro de distancias entre puntos de la provincia de Misiones, continua con un texto o un audio.', {
             media: 'https://misiones.tur.ar/wp-content/uploads/2024/12/cuadro-de-distancias-Misiones.pdf',
     })
 
