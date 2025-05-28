@@ -11,7 +11,7 @@ COPY . .
 COPY package*.json *-lock.yaml ./
 
 RUN apk add --no-cache --virtual .gyp \
-        py3 \
+        py3-pip \
         make \
         g++ \
     && apk add --no-cache git \
