@@ -1,7 +1,6 @@
 import "dotenv/config"
 import { createBot, createProvider, createFlow, addKeyword, EVENTS } from '@builderbot/bot'
-/** import { MemoryDB } from '@builderbot/bot'  */
-import { IDatabase, adapterDB } from './json-database';
+import { MemoryDB } from '@builderbot/bot'  
 import { BaileysProvider } from '@builderbot/provider-baileys';
 
 import { toAsk, httpInject } from "@builderbot-plugins/openai-assistants"
@@ -89,7 +88,7 @@ const flowLocation = addKeyword(EVENTS.LOCATION)
  * Flujo de nota de voz
  * Respuesta texto y audio
  */
-const voiceNoteFlow = addKeyword<BaileysProvider, IDatabase>(EVENTS.VOICE_NOTE)
+const voiceNoteFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.VOICE_NOTE)
     .addAction(async (ctx, { flowDynamic, state, provider }) => {
         await recording(ctx, provider)
         try {
@@ -157,14 +156,14 @@ const noteToVoiceFlow = async (text: string) => {
 /** Flujo de denuncia o reclamo
  * se activa ante estas palabras
  */
-const denunciaFlow = addKeyword<BaileysProvider, IDatabase>(['denuncia', 'reclamo', 'denunciar', 'reportar']).addAnswer(
+const denunciaFlow = addKeyword<BaileysProvider, MemoryDB>(['denuncia', 'reclamo', 'denunciar', 'reportar']).addAnswer(
     ['Para reclamos o denuncias sobre servicios turísticos en Misiones ingrese a', '📄 https://misiones.tur.ar/web/pub_fisca/DenunciaAV.php \n', 'Dirección de Fiscalización del Ministerio de Turismo de Misiones: fiscalizacion@misiones.tur.ar']
 )
 
 /** Flujo de distancia, mapa y folletos
  * se activa ante estas palabras
  */
-const distanciaFlow = addKeyword<BaileysProvider, IDatabase>(['distancia', 'distamcias', 'mapa', 'mapas', 'folleto', 'folletos']).addAnswer(
+const distanciaFlow = addKeyword<BaileysProvider, MemoryDB>(['distancia', 'distamcias', 'mapa', 'mapas', 'folleto', 'folletos']).addAnswer(
     ['Para ver y descargar folletos, mapas y cuadro de distancias de Misiones ingrese a', '📄 https://misiones.tur.ar/folletos \n']
 )
 
@@ -173,7 +172,7 @@ const distanciaFlow = addKeyword<BaileysProvider, IDatabase>(['distancia', 'dist
  * Flujo de bienvenida que maneja las respuestas del asistente de IA
  * @type {import('@builderbot/bot').Flow<BaileysProvider, MemoryDB>}
  */
-const welcomeFlow = addKeyword<BaileysProvider, IDatabase>(EVENTS.WELCOME)
+const welcomeFlow = addKeyword<BaileysProvider, MemoryDB>(EVENTS.WELCOME)
     .addAction(async (ctx, { flowDynamic, state, provider }) => {
         const userId = ctx.from; // Use the user's ID to create a unique queue for each user
         console.log(userId);
@@ -216,7 +215,7 @@ const main = async () => {
      * Base de datos en memoria para el bot
      * @type {MemoryDB}
      */
-     //    const adapterDB = new MemoryDB();
+         const adapterDB = new MemoryDB();
 
 
     /**
