@@ -11,15 +11,9 @@ importers:
       '@builderbot-plugins/openai-assistants':
         specifier: ^0.0.2
         version: 0.0.2(encoding@0.1.13)
-      openai:
-        specifier: ^4.61.0
-        version: 4.61.0
       '@builderbot/bot':
         specifier: 1.2.2
         version: 1.2.2
-      '@builderbot/database-json': 
-        specifier: 1.1.7
-        version: 1.1.7
       '@builderbot/provider-baileys':
         specifier: 1.2.2
         version: 1.2.2(qrcode-terminal@0.12.0)
@@ -32,7 +26,6 @@ importers:
       '@builderbot/provider-venom':
         specifier: ^1.2.2
         version: 1.2.2(encoding@0.1.13)(typescript@5.4.5)
-      
       '@builderbot/provider-wppconnect':
         specifier: ^1.2.2
         version: 1.2.2(encoding@0.1.13)(puppeteer-core@21.11.0(encoding@0.1.13))(typescript@5.4.5)
@@ -9118,4 +9111,3 @@ snapshots:
       - supports-color
 
   zod@3.23.8: {}
-
